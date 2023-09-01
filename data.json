@@ -1,0 +1,72 @@
+[
+    {
+        "id": 101,
+        "seats": "100",
+        "amenities": "chairs",
+        "perHr": "1000",
+        "Booked": "False"
+    },
+    {
+        "id": 102,
+        "seats": "140",
+        "amenities": "chairs",
+        "perHr": "1500",
+        "Booked": "False"
+    },
+    {
+        "id": 103,
+        "seats": "100",
+        "amenities": "chairs",
+        "perHr": "2000",
+        "Booked": "True"
+    },
+    {
+        "id": 104,
+        "seats": "50",
+        "amenities": "chairs",
+        "perHr": "2000",
+        "Booked": "False"
+    },
+    {
+        "id": 105,
+        "seats": "300",
+        "amenities": "chairs",
+        "perHr": "5000",
+        "Booked": "False"
+    },
+    {
+        "id": 106,
+        "seats": "80",
+        "amenities": "chairs",
+        "perHr": "1000",
+        "Booked": "False"
+    },
+    {
+        "id": 107,
+        "seats": "500",
+        "amenities": "chairs",
+        "perHr": "8000",
+        "Booked": "True"
+    },
+    {
+        "id": 108,
+        "seats": "100",
+        "amenities": "chairs",
+        "perHr": "1000",
+        "Booked": "False"
+    },
+    {
+        "id": 109,
+        "seats": "200",
+        "amenities": "chairs",
+        "perHr": "1700",
+        "Booked": "True"
+    },
+    {
+        "id": 110,
+        "seats": "175",
+        "amenities": "chairs",
+        "perHr": "2100",
+        "Booked": "False"
+    }
+]

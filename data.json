@@ -68,5 +68,19 @@
         "amenities": "chairs",
         "perHr": "2100",
         "Booked": "False"
+    },
+    {
+        "id": 111,
+        "seats": "175",
+        "amenities": "chairs",
+        "perHr": "2100",
+        "Booked": "False"
+    },
+    {
+        "id": 112,
+        "seats": "150",
+        "amenities": "chairs",
+        "perHr": "2100",
+        "Booked": "False"
     }
 ]

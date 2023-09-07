@@ -1,4 +1,3 @@
-
 import express from "express"
 import {MongoClient} from "mongodb"
 import * as dotenv from 'dotenv'
@@ -56,13 +55,13 @@ app.post("/BookRoom",async function(req,res){
         await client.db("task").collection("room").updateOne({ id: roomId }, { $set: { Booked: 'True' } });
 
         console.log("updation done")
-      const booking = {
-      customer_name: customerName,
-      date,
-      start_time: startTime,
-      end_time: endTime,
-      roomId: roomId,
-    };
+        const booking = {
+        customer_name: customerName,
+        date,
+        start_time: startTime,
+        end_time: endTime,
+        roomId: roomId,
+      };
 
     const bookingResult = await client
       .db("task")
@@ -79,27 +78,6 @@ app.post("/BookRoom",async function(req,res){
 
     // ==========================================================================================
  
-
-    // app.get("/BookedRooms", async function (req, resp) {
-     
-    //   const result = await client
-    //     .db("task")
-    //     .collection("booking")
-    //     // .find({_id:0,roomId:1})
-    //     .find({}, { _id: 0, roomId: 1 });
-
-       
-    
-    //   result ? resp.send(result) : resp.status(404).send("No rooms are booked!!");
-    // });
-
-
-
-
-
-
-
-
 
     app.get("/BookedRooms", async function (req, resp) {
       try {
@@ -120,22 +98,11 @@ app.post("/BookRoom",async function(req,res){
         resp.status(500).send("Internal Server Error");
       }
     });
- 
-    
-    
-    
-    
-    
-    
-    
 
-     // db.booking.find({}, { _id: 0, room_id: 1 })
-// ==========================================================================================
+ // ==========================================================================================
  //  List all customers with booked Data with Customer name, Room Name, Date,Start Time,  End Time
   
  
- 
-//  app.get("/ListCustomers", async function (req, resp) {
   app.get("/ListCustomers", async function (req, resp) {
     try {
       const result = await client
@@ -159,11 +126,6 @@ app.post("/BookRoom",async function(req,res){
 
 //=========================================================================================
 //List how many times a customer has booked the room with below details
-
-
- 
- 
- 
  
 app.get("/CustomerBookingCounts", async function (req, resp) {
   try {
@@ -204,12 +166,33 @@ app.get("/CustomerBookingCounts", async function (req, resp) {
  //======================================================================================
 
 
+app.put("/UpdateRoomBookingStatus/:roomId", async function (req, resp) {
+  const roomId = req.params.roomId;
 
+  try {
+    const result = await client
+      .db("task")
+      .collection("room")
+      .updateOne(
+        { id: roomId },
+        { $set: { Booked: 'false' } }
+      );
 
+    if (result.modifiedCount === 1) {
+      resp.json({ message: "Room booking status updated successfully." });
+    } else {
+      resp.status(404).json({ error: "Room not found." });
+    }
+  } catch (error) {
+    console.error("Error updating room booking status:", error);
+    resp.status(500).send("Internal Server Error");
+  }
+});
   
+
  
 
-
+// await client.db("task").collection("room").updateOne({ id: roomId }, { $set: { Booked: 'True' } });
 
 
 
@@ -234,74 +217,6 @@ app.get("/CustomerBookingCounts", async function (req, resp) {
 
 
 app.listen((PORT),()=>console.log("Server Connected at portnumber",PORT))
-
-
-
-
-
-
-
-// app.get("/availableRoom",async function(req,res){
-//     const result = await client.db("task").collection("room").find({Booked:"False"}).toArray()
-    
-//     result ? res.send(result) : res.status(404).send({message:"All rooms are booked"})
-// })
-
-
-
-// app.get("/bookedroom",async function(req,res){
-
-//     const result = await client.db("task").collection("bookedroom").find({}).toArray()
-// })
-
-
-
-
-
-
-
-
-
-
-
-// app.post("/bookRoom",async function(req,res){
-//     const data = req.body;
-//     const date = new Date().toString()
-//     const bookStatus = {Booked:"True"};
-
-//     var availableRooms = await client.db("task").collection("room").findOne({Booked:"False"});
-
-//     if(availableRooms === null){
-//         res.send({Message:"No Rooms are available,create a room!"})
-//         return
-//     }
-
-//     const updatedata = {RoomId:availableRooms.id,date:date}
-//     // Insert the booking data into the "room" collection
-//     var result = await client.db("task").collection("room").insertOne(data);
-
-//     // Update the booked room data in the "bookedroom" collection
-
-//     // result = await client.db("task").collection("bookedroom").updateOne({$set:updatedata})
-//     // Update the available room's status to booked
-    
-//     availableRooms = await client.db("task").collection("room").updateOne({id:availableRooms._id},{$set:bookStatus})
-
-
-//     res.send(result);
-// })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
